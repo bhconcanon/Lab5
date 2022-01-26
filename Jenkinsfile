@@ -50,7 +50,7 @@ spec:
             when {
                 allOf {
                     triggeredBy 'EventTriggerCause';
-                    equals expected: 'enabled', actual: getTriggerCauseEvent()
+                    equals (expected: 'enabled', actual: getTriggerCauseEvent.getTriggerCauseEvent())
                 }
             }
             steps {
