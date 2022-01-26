@@ -18,7 +18,7 @@ spec:
     }
     
     triggers {
-        eventTrigger jmespathQuery("test=='enabled'")
+        eventTrigger jmespathQuery("lab=='5'")
     }
 
     stages {
@@ -50,7 +50,9 @@ spec:
         }
 
         stage('Test Optional') {
-           when { triggeredBy 'EventTriggerCause' }
+           when {
+                triggeredBy 'test=enabled'
+            }
             steps {
                 sh 'mvn test'
             }
@@ -66,8 +68,11 @@ spec:
             not {
                 branch 'develop'
             }
-                when { triggeredBy 'EventTriggerCause' }
         }
+            when { 
+                when {
+                    triggeredBy 'deploy=enabled'
+            }
             steps {
                 sh './scripts/deliver.sh'
                 }
