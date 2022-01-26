@@ -66,9 +66,7 @@ spec:
             not {
                 branch 'develop'
             }
-                when { 
-                        triggeredBy 'EventTriggerCause' 
-            }
+                when { triggeredBy 'EventTriggerCause' }
         }
             steps {
                 sh './scripts/deliver.sh'
