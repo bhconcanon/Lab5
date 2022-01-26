@@ -61,16 +61,20 @@ spec:
             }
         }
 
-        stage ('deploy') {
+        stage ('Deploy') {
            when {
             not {
                 branch 'develop'
+                    when { 
+                        triggeredBy 'EventTriggerCause' 
+                }
             }
         }
             steps {
                 sh './scripts/deliver.sh'
                 }
         }
+
         stage ('buildEnd Time Stage') {
             steps {
                 buildEnd ()
