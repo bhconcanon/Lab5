@@ -70,7 +70,6 @@ spec:
             }
             steps {
                 sh './scripts/deliver.sh'
-                }
             }
         }
 
