@@ -32,21 +32,8 @@ spec:
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
-            when {
-                branch 'main || release'
-            }
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
 
-        stage('Test Optional') {
+        stage('Test') {
             when {
                 allOf {
                     triggeredBy 'EventTriggerCause';
