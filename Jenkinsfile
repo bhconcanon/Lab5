@@ -66,6 +66,7 @@ spec:
            when {
             not {
                 branch 'develop'
+                }
             }
             steps {
                 sh './scripts/deliver.sh'
