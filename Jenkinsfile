@@ -18,7 +18,7 @@ spec:
     }
     
     triggers {
-        eventTrigger jmespathQuery("branch=='main'")
+        eventTrigger jmespathQuery("ref=='/ref/head/main'")
     }
 
     stages {
