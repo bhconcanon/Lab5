@@ -18,7 +18,7 @@ spec:
     }
     
     triggers {
-        eventTrigger jmespathQuery("ref=='/ref/head/main'")
+        eventTrigger jmespathQuery("branch=='main'")
     }
 
     stages {
@@ -33,9 +33,7 @@ spec:
             }
         }
         stage('Test') {
-            when {
-                allOf {
-                    triggeredBy 'EventTriggerCause';    
+            when { triggeredBy 'EventTriggerCause';    
                     equals (expected: 'main', actual: getTriggerCauseEvent.getTriggerCauseEvent())
                 }
             }
