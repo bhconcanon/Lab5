@@ -65,9 +65,9 @@ spec:
            when {
             not {
                 branch 'develop'
-                    when { 
+            }
+                when { 
                         triggeredBy 'EventTriggerCause' 
-                }
             }
         }
             steps {
