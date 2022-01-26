@@ -34,6 +34,9 @@ spec:
         }
         stage('Test') {
             steps {
+                when {
+                branch 'main' || 'release'
+            }
                 sh 'mvn test'
             }
             post {
