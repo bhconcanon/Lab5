@@ -34,12 +34,23 @@ spec:
         }
 
         stage('Test') {
-            when {
-                allOf {
-                    triggeredBy 'EventTriggerCause';
-                    equals (expected: 'enabled', actual: getTriggerCauseEvent.getTriggerCauseEvent())
+           when { 
+            experession {
+                BRANCH_NAME == 'main' || BRANCH_NAME == 'release'
+                } 
+            }
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
+        }
+
+        stage('Test Optional') {
+           when { triggeredBy 'EventTriggerCause' }
             steps {
                 sh 'mvn test'
             }
