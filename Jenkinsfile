@@ -62,8 +62,7 @@ spec:
                 }
             }
         }
-
-        stage ('Deploy') {
+        stage('Deploy') {
            when {
             not {
                 branch 'develop'
@@ -76,9 +75,10 @@ spec:
             steps {
                 sh './scripts/deliver.sh'
                 }
+            }
         }
 
-        stage ('buildEnd Time Stage') {
+        stage('buildEnd Time Stage') {
             steps {
                 buildEnd ()
                 }
