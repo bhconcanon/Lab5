@@ -62,13 +62,18 @@ spec:
                 }
             }
         }
-        stage('Deploy') {
+        stage('Stop Dev Deploy') {
            when {
             not {
                 branch 'develop'
             }
+            steps {
+                sh './scripts/deliver.sh'
+                }
+            }
         }
-            when { 
+
+        stage('Deploy') { 
                 when {
                     triggeredBy 'deploy=enabled'
             }
@@ -76,7 +81,6 @@ spec:
                 sh './scripts/deliver.sh'
                 }
             }
-        }
 
         stage('buildEnd Time Stage') {
             steps {
