@@ -18,7 +18,7 @@ spec:
     }
     
     triggers {
-        eventTrigger jmespathQuery("branch=='main'")
+        eventTrigger jmespathQuery("test=='enabled'")
     }
 
     stages {
@@ -45,6 +45,24 @@ spec:
                 }
             }
         }
+
+        stage('Test Optional') {
+            when {
+                allOf {
+                    triggeredBy 'EventTriggerCause';
+                    equals expected: 'enabled', actual: getTriggerCauseEvent()
+                }
+            }
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+
         stage ('deploy') {
             steps {
                 sh './scripts/deliver.sh'
