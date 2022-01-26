@@ -61,6 +61,11 @@ spec:
             }
         }
 
+        when {
+            not {
+                branch 'develop'
+            }
+        }
         stage ('deploy') {
             steps {
                 sh './scripts/deliver.sh'
